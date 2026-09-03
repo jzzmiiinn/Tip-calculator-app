@@ -6,8 +6,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tip-calculator-app-main</title>
   </head>
-  <body>
-    <div id="app"></div>
+  <body
+    class="font-space-mono bg-[hsl(185,41%,84%)] flex flex-col min-h-screen gap-4 justify-center items-center"
+  >
+    <img src="/logo.svg" alt="" />
+    <main
+      class="bg-white flex flex-col md:flex-row gap-6 justify-between rounded-2xl w-230 max-w-[90%] p-6"
+    >
+      <form class="bg-white w-full md:w-1/2 space-y-4">
+        <div class="flex flex-col gap-3">
+          <label for="bill" class="text-[hsl(186,14%,43%)]"> Bill </label>
+          <div
+            class="flex items-center gap-2 rounded-md bg-[hsl(189,47%,97%)] px-4 py-2 focus-within:ring-2 focus-within:ring-[#26C0AB]"
+          >
+            <img src="/icon-dollar.svg" alt="" />
+            <input
+              type="number"
+              id="bill"
+              placeholder="0"
+              class="w-full bg-transparent text-right text-2xl font-bold text-[#00474B] outline-none"
+            />
+          </div>
+        </div>
+        <fieldset id="tip">
+          <legend class="text-[hsl(186,14%,43%)]">Select Tip %</legend>
+
+          <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+            <label>
+              <input type="radio" name="tip" value="5" class="peer sr-only" />
+              <span
+                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
+                >5%</span
+              >
+            </label>
+
+            <label>
+              <input type="radio" name="tip" value="10" class="peer sr-only" />
+              <span
+                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
+                >10%</span
+              >
+            </label>
+
+            <label>
+              <input type="radio" name="tip" value="15" class="peer sr-only" />
+              <span
+                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
+                >15%</span
+              >
+            </label>
+
+            <label>
+              <input type="radio" name="tip" value="25" class="peer sr-only" />
+              <span
+                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
+                >25%</span
+              >
+            </label>
+
+            <label>
+              <input type="radio" name="tip" value="50" class="peer sr-only" />
+              <span
+                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
+                >50%</span
+              >
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="tip"
+                value="custom"
+                class="peer sr-only"
+              />
+
+              <span
+                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
+              >
+                Custom
+              </span>
+            </label>
+          </div>
+        </fieldset>
+        <div class="flex flex-col gap-2">
+          <label class="text-[hsl(186,14%,43%)]" for="peopleNumber">
+            Number of People
+          </label>
+
+          <div
+            class="flex items-center gap-2 rounded-md bg-[hsl(189,47%,97%)] px-4 py-2 focus-within:ring-2 focus-within:ring-[#26C0AB]"
+          >
+            <img src="/icon-person.svg" alt="" />
+
+            <input
+              type="number"
+              id="peopleNumber"
+              name="peopleNumber"
+              placeholder="0"
+              min="1"
+              class="w-full bg-transparent text-right text-2xl font-bold text-[#00474B] outline-none"
+            />
+          </div>
+        </div>
+      </form>
+      <section
+        class="bg-[hsl(183,100%,15%)] w-full md:w-1/2 rounded-2xl p-6 flex flex-col justify-between gap-8"
+      >
+        <div class="flex flex-row justify-between">
+          <h2 class="flex flex-col">Tip Amount <span>/person</span></h2>
+          <p><img src="/icon-dollar.svg" alt="" />0.00</p>
+        </div>
+        <div class="flex flex-row justify-between">
+          <h2 class="flex flex-col">Total <span>/person</span></h2>
+          <p><img src="/icon-dollar.svg" alt="" />0.00</p>
+        </div>
+        <button
+          id="reset"
+          type="button"
+          class="w-full rounded-md bg-[#26C0AB] py-3 font-bold text-[#00474B] transition hover:bg-[#9FE8DF]"
+        >
+          RESET
+        </button>
+      </section>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
