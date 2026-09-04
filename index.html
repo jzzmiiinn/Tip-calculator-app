@@ -7,33 +7,51 @@
     <title>tip-calculator-app-main</title>
   </head>
   <body
-    class="font-space-mono bg-[hsl(185,41%,84%)] flex flex-col min-h-screen gap-4 justify-center items-center"
+    class="font-space-mono bg-[hsl(185,41%,84%)] flex min-h-screen flex-col items-center justify-center gap-16 md:gap-8"
   >
-    <img src="/logo.svg" alt="" />
+    <img class="m-10" src="/logo.svg" alt="" />
     <main
-      class="bg-white flex flex-col md:flex-row gap-6 justify-between rounded-2xl w-230 max-w-[90%] p-6"
+      class="bg-white flex w-full max-w-230 flex-col gap-6 rounded-2xl p-6 md:flex-row"
     >
-      <form class="bg-white w-full md:w-1/2 space-y-4">
+      <form id="tipForm" class="bg-white w-full md:w-1/2 space-y-4">
         <div class="flex flex-col gap-3">
-          <label for="bill" class="text-[hsl(186,14%,43%)]"> Bill </label>
+          <div class="flex justify-between">
+            <label for="billAmount" class="text-[hsl(186,14%,43%)]">
+              Bill
+            </label>
+            <p id="billError" class="hidden text-red-500 text-sm">
+              Can't be zero
+            </p>
+          </div>
           <div
-            class="flex items-center gap-2 rounded-md bg-[hsl(189,47%,97%)] px-4 py-2 focus-within:ring-2 focus-within:ring-[#26C0AB]"
+            id="billInput"
+            class="flex items-center border-2 border-transparent gap-2 rounded-md bg-[hsl(189,47%,97%)] px-4 py-2 focus-within:ring-2 focus-within:ring-[#26C0AB]"
           >
             <img src="/icon-dollar.svg" alt="" />
             <input
               type="number"
-              id="bill"
+              id="billAmount"
               placeholder="0"
               class="w-full bg-transparent text-right text-2xl font-bold text-[#00474B] outline-none"
             />
           </div>
         </div>
-        <fieldset id="tip">
-          <legend class="text-[hsl(186,14%,43%)]">Select Tip %</legend>
+        <fieldset>
+          <div class="flex justify-between">
+            <legend class="text-[hsl(186,14%,43%)]">Select Tip %</legend>
+            <p id="tipError" class="hidden text-red-500 text-sm">
+              Please select a tip
+            </p>
+          </div>
 
           <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
             <label>
-              <input type="radio" name="tip" value="5" class="peer sr-only" />
+              <input
+                type="radio"
+                name="tipPercentage"
+                value="5"
+                class="peer sr-only"
+              />
               <span
                 class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
                 >5%</span
@@ -41,7 +59,12 @@
             </label>
 
             <label>
-              <input type="radio" name="tip" value="10" class="peer sr-only" />
+              <input
+                type="radio"
+                name="tipPercentage"
+                value="10"
+                class="peer sr-only"
+              />
               <span
                 class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
                 >10%</span
@@ -49,7 +72,12 @@
             </label>
 
             <label>
-              <input type="radio" name="tip" value="15" class="peer sr-only" />
+              <input
+                type="radio"
+                name="tipPercentage"
+                value="15"
+                class="peer sr-only"
+              />
               <span
                 class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
                 >15%</span
@@ -57,7 +85,12 @@
             </label>
 
             <label>
-              <input type="radio" name="tip" value="25" class="peer sr-only" />
+              <input
+                type="radio"
+                name="tipPercentage"
+                value="25"
+                class="peer sr-only"
+              />
               <span
                 class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
                 >25%</span
@@ -65,7 +98,12 @@
             </label>
 
             <label>
-              <input type="radio" name="tip" value="50" class="peer sr-only" />
+              <input
+                type="radio"
+                name="tipPercentage"
+                value="50"
+                class="peer sr-only"
+              />
               <span
                 class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
                 >50%</span
@@ -74,27 +112,27 @@
 
             <label>
               <input
-                type="radio"
-                name="tip"
-                value="custom"
-                class="peer sr-only"
+                type="number"
+                id="customTip"
+                placeholder="Custom"
+                class="w-full bg-transparent text-center text-2xl font-bold text-[#00474B] outline-none"
               />
-
-              <span
-                class="block rounded-md bg-[#00474B] px-4 py-1 text-center text-lg font-bold text-white transition-colors peer-checked:bg-[#26C0AB] peer-checked:text-[#00474B]"
-              >
-                Custom
-              </span>
             </label>
           </div>
         </fieldset>
         <div class="flex flex-col gap-2">
-          <label class="text-[hsl(186,14%,43%)]" for="peopleNumber">
-            Number of People
-          </label>
+          <div class="flex justify-between">
+            <label class="text-[hsl(186,14%,43%)]" for="peopleNumber">
+              Number of People
+            </label>
+            <p id="peopleError" class="hidden text-red-500 text-sm">
+              Can't be zero
+            </p>
+          </div>
 
           <div
-            class="flex items-center gap-2 rounded-md bg-[hsl(189,47%,97%)] px-4 py-2 focus-within:ring-2 focus-within:ring-[#26C0AB]"
+            id="peopleInput"
+            class="flex items-center gap-2 rounded-md border-2 border-transparent bg-[hsl(189,47%,97%)] px-4 py-2 focus-within:ring-2 focus-within:ring-[#26C0AB]"
           >
             <img src="/icon-person.svg" alt="" />
 
@@ -108,17 +146,32 @@
             />
           </div>
         </div>
+        <button type="submit" class="hidden">Calculate</button>
       </form>
       <section
         class="bg-[hsl(183,100%,15%)] w-full md:w-1/2 rounded-2xl p-6 flex flex-col justify-between gap-8"
       >
         <div class="flex flex-row justify-between">
-          <h2 class="flex flex-col">Tip Amount <span>/person</span></h2>
-          <p><img src="/icon-dollar.svg" alt="" />0.00</p>
+          <p class="flex flex-col text-white">
+            Tip Amount <span class="text-[hsl(186,14%,43%)]">/ person</span>
+          </p>
+          <p class="flex flex-row">
+            <span class="text-[#26C0AB] text-4xl font-extrabold" id="tipResult"
+              >$0.00</span
+            >
+          </p>
         </div>
         <div class="flex flex-row justify-between">
-          <h2 class="flex flex-col">Total <span>/person</span></h2>
-          <p><img src="/icon-dollar.svg" alt="" />0.00</p>
+          <p class="flex flex-col text-white">
+            Total <span class="text-[hsl(186,14%,43%)]">/ person</span>
+          </p>
+          <p class="flex flex-row">
+            <span
+              id="totalResult"
+              class="text-[#26C0AB] text-4xl font-extrabold"
+              >$0.00</span
+            >
+          </p>
         </div>
         <button
           id="reset"
